@@ -1,0 +1,146 @@
+@(title: String)
+<!DOCTYPE html>
+<html lang="en" ng-app="wasatchSocial">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wasatch Social</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- image gallery -->
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+<link rel="stylesheet"
+	href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<a class="navbar-brand" href="/">Mountain Trends</a>
+
+		<!-- Single button -->
+		<div class="container-fluid">
+			<div class="btn-group pull-right">
+				<button type="button"
+					class="btn btn-default dropdown-toggle navbar-btn"
+					data-toggle="dropdown" aria-expanded="false">
+					Range <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Wasatch</a></li>
+					<li><a href="#">Tetons</a></li>
+					<li><a href="#">Whites</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h3>Instagram</h3>
+		<div ng-controller="InstagramController as ic">
+			<div style="padding-bottom:40px">
+				<a ng-repeat="instagram in ic.instagrams" href="{{instagram.images.standard_resolution.url}}" title="{{instagram.caption.text}}"
+					data-gallery> <img
+					ng-src="{{instagram.images.thumbnail.url}}"
+					alt="{{instagram.caption.text}}">
+					
+				</a>
+			</div>
+		</div>
+		<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+		<div id="blueimp-gallery" class="blueimp-gallery">
+			<!-- The container for the modal slides -->
+			<div class="slides"></div>
+			<!-- Controls for the borderless lightbox -->
+			<h3 class="title"></h3>
+			<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a
+				class="play-pause"></a>
+			<ol class="indicator"></ol>
+			<!-- The modal dialog, which will be used to wrap the lightbox content -->
+			<div class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" aria-hidden="true">&times;</button>
+							<h4 class="modal-title"></h4>
+						</div>
+						<div class="modal-body next"></div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default pull-left prev">
+								<i class="glyphicon glyphicon-chevron-left"></i> Previous
+							</button>
+							<button type="button" class="btn btn-primary next">
+								Next <i class="glyphicon glyphicon-chevron-right"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 		  <div id="carousel-ig" class="carousel slide" data-ride="carousel">
+			  Indicators
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-generic" ng-repeat-start="instagram in ic.instagrams" ng-if="$first" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic" ng-repeat-end="instagram in ic.instagrams" ng-if="!$first" data-slide-to="0"></li>
+			  </ol>
+			
+			  Wrapper for slides
+			  <div class="carousel-inner" role="listbox">
+			    <div class="item active" ng-repeat-start="instagram in ic.instagrams" ng-if="$first">
+			      <img class="center-block" ng-src="{{instagram.images.standard_resolution.url}}" title="{{instagram.caption.text}}">
+			      <div class="carousel-caption">
+	    			<h3>Posted by: <a href="{{instagram.link}}" target="_blank">{{instagram.user.username}}</a> On: {{instagram.created_time * 1000 | date:'MM/dd/yyyy @@ h:mma'}}</h3>
+	    			<p>{{instagram.caption.text}}</p>
+	  			  </div>
+			    </div>
+			    <div class="item" ng-repeat-end="instagram in ic.instagrams" ng-if="!$first">
+			      <img class="center-block" ng-src="{{instagram.images.standard_resolution.url}}" title="{{instagram.caption.text}}">
+			      <div class="carousel-caption">
+	    			<h3>Posted by: <a href="{{instagram.link}}" target="_blank">{{instagram.user.username}}</a> On: {{instagram.created_time * 1000 | date:'MM/dd/yyyy @@ h:mma'}}</h3>
+	    			<p>{{instagram.caption.text}}</p>
+	  			  </div>
+			    </div>
+			    ...
+			  </div>
+			
+			  Controls
+			  <a class="left carousel-control" href="#carousel-ig" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#carousel-ig" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div> -->
+	</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- bootstrap js -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-resource.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<!-- Image Gallery -->
+	<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+	<script
+		src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")'
+		type="text/javascript"></script>
+	<!-- Application -->
+	<script src='@routes.Assets.at("javascripts/main.js")'
+		type="text/javascript"></script>
+</body>
+</html>
